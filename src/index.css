@@ -141,6 +141,35 @@ footer button:hover {
   opacity: 0.7;
 }
 
+.loadingState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  font-size: 3rem;
+}
+
+.loadingState p {
+  margin: 10px;
+}
+
+.loadingState i {
+  opacity: 0.7;
+  animation: spin 1s linear infinite;
+}
+
+.descriptionTitle {
+  font-size: 1.1rem;
+  font-weight: 200;
+
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 
 @media (min-width: 640px) {
   .sidebar {

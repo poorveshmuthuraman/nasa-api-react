@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 
 function App() {
   const [showModal, setShowModel] = useState(false)
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(false)
   
   useEffect(() => {
     async function fetchAPIData() {
@@ -15,8 +17,9 @@ function App() {
       try {
         const res = await fetch(url)
         const apiData = await res.json()
+        console.log('Fetched from API\n\n')
         console.log(apiData)
-        console.log('Fetched from API')
+        setData(apiData)
       } catch (err) {
         console.log(err.message)
       }
@@ -31,9 +34,14 @@ function App() {
 
   return (
     <>
-    <Main/>
-    {showModal && (<SideBar handleToggleModal={handleToggleModal}/>)}
-    <Footer handleToggleModal={handleToggleModal}/>
+    {data ? (<Main data={data}/>) : (
+      <div className="loadingState">
+        <p>Loading...</p>
+        <i className="fa-solid fa-gear"></i>
+      </div>
+    ) }
+    {showModal && (<SideBar data={data} handleToggleModal={handleToggleModal}/>)}
+    {data && (<Footer data={data} handleToggleModal={handleToggleModal}/>)}
     </>
   )
 }
