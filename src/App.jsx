@@ -7,20 +7,20 @@ import { useEffect, useState } from 'react'
 function App() {
   const [showModal, setShowModel] = useState(false)
   
-  useEffect(() =>{
+  useEffect(() => {
     async function fetchAPIData() {
       const NASA_KEY = import.meta.env.VITE_NASA_API_KEY
-      const url = 'GET https://api.nasa.gov/planetary/apod' + `?api_key=${NASA_KEY}`
+      const url = 'https://api.nasa.gov/planetary/apod' + `?api_key=${NASA_KEY}`
+
       try {
         const res = await fetch(url)
-        console.log(res)
-        const data = await res.json()
-        console.log('DATA: \n\n', data)
-      } catch(err) {
+        const apiData = await res.json()
+        console.log(apiData)
+        console.log('Fetched from API')
+      } catch (err) {
         console.log(err.message)
       }
     }
-
     fetchAPIData()
   }, [])
   
